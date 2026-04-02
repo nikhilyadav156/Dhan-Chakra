@@ -7,9 +7,9 @@ export function Header() {
   const { theme, toggleTheme, role, toggleRole, currency, toggleCurrency, profile } = useFinance();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 shrink-0 w-full items-center justify-between border-b border-slate-200 bg-white/80 px-4 sm:px-6 backdrop-blur-md dark:border-slate-800/50 dark:bg-[var(--color-fin-bg)]/80">
+    <header className={`sticky top-0 z-30 flex h-16 shrink-0 w-full items-center justify-between border-b border-slate-200 px-4 sm:px-6 backdrop-blur-md transition-colors duration-500 ${role === 'Admin' ? 'bg-white/80 dark:bg-[var(--color-fin-bg)]/80' : 'bg-slate-100/90 dark:bg-slate-900/90 border-b-slate-300 dark:border-b-slate-700'}`}>
       <div className="flex items-center">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--color-fin-primary)] text-white shadow-sm md:hidden mr-3 shrink-0">
+        <div className={`flex h-7 w-7 items-center justify-center rounded-lg text-white shadow-sm md:hidden mr-3 shrink-0 transition-colors ${role === 'Admin' ? 'bg-[var(--color-fin-primary)]' : 'bg-slate-600'}`}>
           <Aperture className="h-4 w-4 animate-[spin_6s_linear_infinite]" />
         </div>
         <h2 className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 md:hidden flex-1 truncate max-w-[130px] sm:max-w-none">Dhan-Chakra</h2>

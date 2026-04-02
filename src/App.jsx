@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
 import { BottomNav } from './components/layout/BottomNav';
-import { FinanceProvider } from './context/FinanceContext';
+import { FinanceProvider, useFinance } from './context/FinanceContext';
 import { SummaryCards } from './components/dashboard/SummaryCards';
 import { BalanceChart } from './components/dashboard/BalanceChart';
 import { ExpenseChart } from './components/dashboard/ExpenseChart';
@@ -11,13 +11,14 @@ import { TransactionList } from './components/transactions/TransactionList';
 import { SettingsPanel } from './components/settings/SettingsPanel';
 
 function DashboardLayout() {
+  const { role } = useFinance();
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
     <div className="flex h-screen w-full bg-slate-50 dark:bg-[#0F172A] font-sans selection:bg-blue-500/30 relative">
       
       {/* Premium Light Theme Glass Background Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50/70 via-slate-50 to-slate-100/90 dark:hidden" />
+      <div className={`absolute inset-0 z-0 pointer-events-none transition-colors duration-700 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] ${role === 'Admin' ? 'from-indigo-50/70 via-slate-50' : 'from-slate-200/80 via-slate-100'} to-slate-100/90 dark:hidden`} />
       
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} className="w-64 hidden md:flex relative z-10" />
       <div className="flex flex-1 flex-col overflow-hidden relative z-10">

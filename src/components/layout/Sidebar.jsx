@@ -1,8 +1,10 @@
 import React from 'react';
 import { LayoutDashboard, Receipt, PieChart, Settings, Aperture } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useFinance } from '../../context/FinanceContext';
 
 export function Sidebar({ className, activeTab, setActiveTab }) {
+  const { role } = useFinance();
   const navItems = [
     { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { id: 'transactions', icon: Receipt, label: 'Transactions' },
@@ -13,7 +15,7 @@ export function Sidebar({ className, activeTab, setActiveTab }) {
   return (
     <aside className={cn("flex flex-col border-r border-slate-200 bg-white px-4 py-8 dark:border-slate-800/50 dark:bg-[var(--color-fin-card)] transition-all", className)}>
       <div className="flex items-center gap-3 px-2 mb-10">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-fin-primary)] text-white shadow-sm">
+        <div className={`flex h-8 w-8 items-center justify-center rounded-lg text-white shadow-sm transition-colors ${role === 'Admin' ? 'bg-[var(--color-fin-primary)]' : 'bg-slate-600'}`}>
           <Aperture className="h-5 w-5 animate-[spin_6s_linear_infinite]" />
         </div>
         <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Dhan-Chakra</span>
