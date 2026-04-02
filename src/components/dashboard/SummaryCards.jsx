@@ -26,7 +26,7 @@ export function SummaryCards() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold tracking-tight text-slate-900 dark:text-[var(--color-fin-text)]">{formatCurrency(balance)}</div>
-          <div className="flex items-center mt-2 text-xs font-medium text-[var(--color-fin-emerald)] bg-emerald-50 dark:bg-emerald-500/10 w-fit px-2 py-0.5 rounded-full">
+          <div className="flex items-center mt-2 text-xs font-medium text-emerald-500 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 w-fit px-2 py-0.5 rounded-full">
             <ArrowUpRight className="mr-1 h-3 w-3" />
             +2.5% from last month
           </div>
@@ -37,12 +37,12 @@ export function SummaryCards() {
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-sm font-medium text-slate-500 dark:text-[var(--color-fin-muted)]">Monthly Income</CardTitle>
           <div className="h-8 w-8 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center">
-            <TrendingUp className="h-4 w-4 text-[var(--color-fin-emerald)]" />
+            <TrendingUp className="h-4 w-4 text-emerald-500 dark:text-emerald-400" />
           </div>
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold tracking-tight text-slate-900 dark:text-[var(--color-fin-text)]">{formatCurrency(income)}</div>
-          <div className="flex items-center mt-2 text-xs font-medium text-[var(--color-fin-emerald)] bg-emerald-50 dark:bg-emerald-500/10 w-fit px-2 py-0.5 rounded-full">
+          <div className="flex items-center mt-2 text-xs font-medium text-emerald-500 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 w-fit px-2 py-0.5 rounded-full">
             <ArrowUpRight className="mr-1 h-3 w-3" />
             +12% from last month
           </div>

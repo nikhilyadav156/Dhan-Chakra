@@ -72,7 +72,7 @@ export function InsightsPanel() {
         });
       } else {
         result.push({
-          icon: <TrendingDown className="h-5 w-5 text-[var(--color-fin-emerald)]" />,
+          icon: <TrendingDown className="h-5 w-5 text-emerald-500 dark:text-emerald-400" />,
           title: "Spending Decrease",
           desc: `Great! Your spending dropped by ${Math.abs(diff).toFixed(1)}% vs last month.`
         });

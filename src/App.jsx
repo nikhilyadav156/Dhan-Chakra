@@ -12,7 +12,7 @@ function DashboardLayout() {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
-    <div className="flex h-screen w-full bg-slate-50 dark:bg-[#0F172A] font-sans selection:bg-emerald-500/30 relative">
+    <div className="flex h-screen w-full bg-slate-50 dark:bg-[#0F172A] font-sans selection:bg-blue-500/30 relative">
       
       {/* Premium Light Theme Glass Background Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50/70 via-slate-50 to-slate-100/90 dark:hidden" />

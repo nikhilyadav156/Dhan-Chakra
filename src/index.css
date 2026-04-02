@@ -6,19 +6,36 @@
   --color-fin-bg: #0F172A;
   --color-fin-card: #111827;
   --color-fin-text: #E5E7EB;
-  --color-fin-emerald: #10B981;
+  --color-fin-primary: #2563EB; /* Premium Fintech Blue 600 */
   --color-fin-cyan: #22D3EE;
   --color-fin-red: #EF4444;
   --color-fin-muted: #64748B;
 }
 
 @layer base {
-  body {
-    @apply bg-slate-50 text-slate-900 transition-colors duration-200 antialiased;
+  :root {
+    --bg-page: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --border-card: #E2E8F0;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
   }
   
-  .dark body {
-    background-color: var(--color-fin-bg);
-    color: var(--color-fin-text);
+  .dark {
+    --bg-page: #0F172A;
+    --bg-card: #111827;
+    --border-card: rgba(30, 41, 59, 0.8);
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    @apply transition-colors duration-200 antialiased;
+  }
+  
+  body:not(.dark) {
+    background: radial-gradient(circle at 15% 50%, rgba(241, 245, 249, 1), rgba(248, 250, 252, 1) 25%, rgba(248, 250, 252, 1) 100%);
   }
 }

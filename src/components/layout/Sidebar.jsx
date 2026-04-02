@@ -13,7 +13,7 @@ export function Sidebar({ className, activeTab, setActiveTab }) {
   return (
     <aside className={cn("flex flex-col border-r border-slate-200 bg-white px-4 py-8 dark:border-slate-800/50 dark:bg-[var(--color-fin-card)] transition-all", className)}>
       <div className="flex items-center gap-3 px-2 mb-10">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-fin-emerald)] text-white shadow-sm">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-fin-primary)] text-white shadow-sm">
           <Aperture className="h-5 w-5" />
         </div>
         <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Dhan-Chakra</span>
@@ -29,11 +29,11 @@ export function Sidebar({ className, activeTab, setActiveTab }) {
               className={cn(
                 "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
                 isActive 
-                  ? "bg-slate-100 text-slate-900 dark:bg-emerald-500/10 dark:text-[var(--color-fin-emerald)]" 
+                  ? "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-[var(--color-fin-primary)]" 
                   : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-[var(--color-fin-muted)] dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
               )}
             >
-              <Icon className={cn("h-5 w-5", isActive ? "text-slate-900 dark:text-[var(--color-fin-emerald)]" : "")} />
+              <Icon className={cn("h-5 w-5", isActive ? "text-slate-900 dark:text-[var(--color-fin-primary)]" : "")} />
               {item.label}
             </button>
           )

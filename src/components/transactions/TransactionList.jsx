@@ -135,7 +135,7 @@ export function TransactionList() {
                           {t.category}
                         </span>
                       </td>
-                      <td className={`px-5 py-3.5 text-right font-medium whitespace-nowrap ${t.type === 'income' ? 'text-[var(--color-fin-emerald)]' : 'text-slate-900 dark:text-slate-100'}`}>
+                      <td className={`px-5 py-3.5 text-right font-medium whitespace-nowrap ${t.type === 'income' ? 'text-emerald-500 dark:text-emerald-400' : 'text-slate-900 dark:text-slate-100'}`}>
                         {t.type === 'income' ? '+' : '-'}{formatCurrency(Math.abs(t.amount))}
                       </td>
                     </tr>
