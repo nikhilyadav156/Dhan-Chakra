@@ -8,6 +8,7 @@ import { BalanceChart } from './components/dashboard/BalanceChart';
 import { ExpenseChart } from './components/dashboard/ExpenseChart';
 import { InsightsPanel } from './components/insights/InsightsPanel';
 import { TransactionList } from './components/transactions/TransactionList';
+import { SettingsPanel } from './components/settings/SettingsPanel';
 
 function DashboardLayout() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -61,8 +62,8 @@ function DashboardLayout() {
             )}
 
             {activeTab === 'settings' && (
-              <div className="flex items-center justify-center h-64 border border-dashed border-slate-300 dark:border-slate-800 rounded-xl animate-in fade-in duration-500 dark:bg-[#111827]">
-                <p className="text-slate-500 tracking-wider text-sm font-medium">Settings module incoming.</p>
+              <div className="animate-in fade-in duration-500">
+                <SettingsPanel />
               </div>
             )}
             

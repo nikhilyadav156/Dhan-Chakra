@@ -4,7 +4,7 @@ import { useFinance } from '../../context/FinanceContext';
 import { Button } from '../ui/Button';
 
 export function Header() {
-  const { theme, toggleTheme, role, toggleRole, currency, toggleCurrency } = useFinance();
+  const { theme, toggleTheme, role, toggleRole, currency, toggleCurrency, profile } = useFinance();
 
   return (
     <header className="sticky top-0 z-30 flex h-16 shrink-0 w-full items-center justify-between border-b border-slate-200 bg-white/80 px-4 sm:px-6 backdrop-blur-md dark:border-slate-800/50 dark:bg-[var(--color-fin-bg)]/80">
@@ -14,7 +14,9 @@ export function Header() {
         </div>
         <h2 className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 md:hidden flex-1 truncate max-w-[130px] sm:max-w-none">Dhan-Chakra</h2>
         <div className="hidden md:flex flex-col">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 leading-tight">Good {new Date().getHours() < 12 ? 'Morning' : 'Evening'}, Nikhil</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 leading-tight">
+            Good {new Date().getHours() < 12 ? 'Morning' : 'Evening'}, {profile.name.split(' ')[0]}
+          </h2>
           <p className="text-xs font-medium text-slate-500 dark:text-[var(--color-fin-muted)]">Here is your financial summary</p>
         </div>
       </div>

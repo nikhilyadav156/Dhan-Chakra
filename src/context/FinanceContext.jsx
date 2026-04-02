@@ -33,6 +33,15 @@ export const FinanceProvider = ({ children }) => {
     return localStorage.getItem('fin_currency') || 'USD';
   });
 
+  const [profile, setProfile] = useState(() => {
+    const saved = localStorage.getItem('fin_profile');
+    return saved ? JSON.parse(saved) : {
+      name: 'Nikhil Yadav',
+      email: 'nikhil@example.com',
+      phone: '+91 98765 43210'
+    };
+  });
+
   useEffect(() => {
     localStorage.setItem('fin_transactions', JSON.stringify(transactions));
   }, [transactions]);
@@ -48,9 +57,14 @@ export const FinanceProvider = ({ children }) => {
     localStorage.setItem('fin_currency', currency);
   }, [currency]);
 
+  useEffect(() => {
+    localStorage.setItem('fin_profile', JSON.stringify(profile));
+  }, [profile]);
+
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
   const toggleRole = () => setRole(prev => prev === 'Viewer' ? 'Admin' : 'Viewer');
   const toggleCurrency = () => setCurrency(prev => prev === 'USD' ? 'INR' : 'USD');
+  const updateProfile = (newProfile) => setProfile(newProfile);
 
   const addTransaction = (t) => {
     if (role !== 'Admin') return;
@@ -82,9 +96,11 @@ export const FinanceProvider = ({ children }) => {
       role,
       theme,
       currency,
+      profile,
       toggleTheme,
       toggleRole,
       toggleCurrency,
+      updateProfile,
       formatCurrency,
       addTransaction,
       updateTransaction,

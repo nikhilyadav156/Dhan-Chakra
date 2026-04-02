@@ -151,14 +151,12 @@ export function TransactionList() {
                       </td>
                       <td className="px-4 sm:px-5 py-3 sm:py-4">
                         <div className="font-medium text-slate-900 dark:text-slate-100 truncate max-w-[100px] sm:max-w-none">{t.description}</div>
-                        <div className="sm:hidden text-[10px] text-slate-500 mt-1 tracking-wide uppercase flex items-center gap-1.5 opacity-90">
-                          <span className="text-[11px] drop-shadow-sm">{CatIconMap[t.category] || '📌'}</span>
+                        <div className="sm:hidden text-[10px] text-slate-500 mt-1 tracking-wide uppercase flex items-center opacity-90">
                           {t.category}
                         </div>
                       </td>
                       <td className="hidden sm:table-cell px-5 py-4">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold tracking-wide uppercase bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
-                          <span className="text-[13px] drop-shadow-sm">{CatIconMap[t.category] || '📌'}</span>
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold tracking-wide uppercase bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
                           {t.category}
                         </span>
                       </td>
