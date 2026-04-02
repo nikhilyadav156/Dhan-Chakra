@@ -6,7 +6,7 @@ import { X } from 'lucide-react';
 import { expenseCategories, incomeCategories } from '../../data/mockData';
 
 export function TransactionModal({ isOpen, onClose, transactionToEdit }) {
-  const { addTransaction, updateTransaction } = useFinance();
+  const { addTransaction, updateTransaction, currency } = useFinance();
   const [formData, setFormData] = useState({
     description: '',
     amount: '',
@@ -17,9 +17,13 @@ export function TransactionModal({ isOpen, onClose, transactionToEdit }) {
 
   useEffect(() => {
     if (transactionToEdit) {
+      let displayAmount = transactionToEdit.amount;
+      if (currency === 'INR') {
+        displayAmount = displayAmount * 93;
+      }
       setFormData({
         ...transactionToEdit,
-        amount: String(transactionToEdit.amount)
+        amount: String(displayAmount)
       });
     } else {
       setFormData({
@@ -30,13 +34,18 @@ export function TransactionModal({ isOpen, onClose, transactionToEdit }) {
         date: new Date().toISOString().split('T')[0]
       });
     }
-  }, [transactionToEdit, isOpen]);
+  }, [transactionToEdit, isOpen, currency]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let finalAmount = parseFloat(formData.amount) || 0;
+    if (currency === 'INR') {
+      finalAmount = finalAmount / 93;
+    }
+
     const payload = {
       ...formData,
-      amount: parseFloat(formData.amount) || 0
+      amount: finalAmount
     };
 
     if (transactionToEdit) {
