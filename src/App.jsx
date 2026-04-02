@@ -12,7 +12,11 @@ function DashboardLayout() {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
-    <div className="flex h-screen w-full bg-slate-50 dark:bg-[var(--color-fin-bg)] font-sans selection:bg-[var(--color-fin-emerald)]/30">
+    <div className="flex h-screen w-full bg-slate-50 dark:bg-[#0F172A] font-sans selection:bg-emerald-500/30 relative">
+      
+      {/* Premium Light Theme Glass Background Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50/70 via-slate-50 to-slate-100/90 dark:hidden" />
+      
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} className="w-64 hidden md:flex relative z-10" />
       <div className="flex flex-1 flex-col overflow-hidden relative z-10">
         <Header />
@@ -56,8 +60,8 @@ function DashboardLayout() {
             )}
 
             {activeTab === 'settings' && (
-              <div className="flex items-center justify-center h-64 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl animate-in fade-in duration-500 dark:bg-[var(--color-fin-card)]">
-                <p className="text-slate-500 tracking-wider text-sm font-medium">Settings coming soon.</p>
+              <div className="flex items-center justify-center h-64 border border-dashed border-slate-300 dark:border-slate-800 rounded-xl animate-in fade-in duration-500 dark:bg-[#111827]">
+                <p className="text-slate-500 tracking-wider text-sm font-medium">Settings module incoming.</p>
               </div>
             )}
             

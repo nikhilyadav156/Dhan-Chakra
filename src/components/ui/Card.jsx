@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '../../lib/utils';
 
 export const Card = React.forwardRef(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 dark:border-slate-800/80 dark:bg-[var(--color-fin-card)] dark:text-[var(--color-fin-text)]", className)} {...props} />
+  <div ref={ref} className={cn("rounded-xl border border-white bg-white/60 text-slate-900 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] backdrop-blur-3xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.08)] dark:border-slate-800/80 dark:bg-[#111827] dark:text-[#E5E7EB] dark:backdrop-blur-none dark:shadow-none", className)} {...props} />
 ));
 Card.displayName = "Card";
 

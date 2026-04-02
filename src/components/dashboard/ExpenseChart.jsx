@@ -23,7 +23,7 @@ export function ExpenseChart() {
   if (data.length === 0) {
     return (
       <Card className="min-h-[350px]">
-        <CardHeader><CardTitle>Spending by Category</CardTitle></CardHeader>
+        <CardHeader><CardTitle>Spending Summary</CardTitle></CardHeader>
         <CardContent className="flex h-[280px] items-center justify-center text-slate-500">
           No expenses found.
         </CardContent>
@@ -34,7 +34,7 @@ export function ExpenseChart() {
   const CustomTooltipInner = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white/90 dark:bg-[var(--color-fin-card)]/90 border border-slate-200 dark:border-slate-700/50 px-4 py-3 rounded-xl shadow-lg backdrop-blur-md flex items-center gap-3">
+        <div className="bg-white/95 dark:bg-[#111827]/95 border border-slate-200 dark:border-slate-700/50 px-4 py-3 rounded-xl shadow-lg backdrop-blur-md flex items-center gap-3">
           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: payload[0].payload.fill }} />
           <span className="font-medium text-slate-700 dark:text-slate-300">{payload[0].name}:</span>
           <span className="font-bold ml-1 text-slate-900 dark:text-slate-100">{formatCurrency(payload[0].value)}</span>
@@ -45,11 +45,11 @@ export function ExpenseChart() {
   };
 
   return (
-    <Card className="min-h-[350px] flex flex-col">
-      <CardHeader>
+    <Card className="min-h-[350px]">
+      <CardHeader className="pb-2">
         <CardTitle>Spending Summary</CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 h-[280px] pt-4">
+      <CardContent className="h-[280px] w-full pt-4">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
