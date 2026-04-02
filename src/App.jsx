@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
+import { BottomNav } from './components/layout/BottomNav';
 import { FinanceProvider } from './context/FinanceContext';
 import { SummaryCards } from './components/dashboard/SummaryCards';
 import { BalanceChart } from './components/dashboard/BalanceChart';
@@ -20,7 +21,7 @@ function DashboardLayout() {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} className="w-64 hidden md:flex relative z-10" />
       <div className="flex flex-1 flex-col overflow-hidden relative z-10">
         <Header />
-        <main className="flex-1 overflow-y-auto p-4 md:p-8">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
           <div className="mx-auto max-w-[1200px] space-y-6">
             
             {activeTab === 'dashboard' && (
@@ -67,6 +68,7 @@ function DashboardLayout() {
             
           </div>
         </main>
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
     </div>
   );

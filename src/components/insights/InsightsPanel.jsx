@@ -7,12 +7,9 @@ import { subMonths, isAfter, startOfMonth } from 'date-fns';
 export function InsightsPanel() {
   const { transactions, formatCurrency } = useFinance();
 
-  const insights = useMemo(() => {
-    if (!transactions.length) return [];
+  const { insights, topCategories } = useMemo(() => {
+    if (!transactions.length) return { insights: [], topCategories: { list: [], total: 0 } };
     
-    // Simulate realistic finding for the prompt requirement:
-    // Automatically highlights the spending delta per category and builds a smart message
-
     const now = new Date();
     const currentMonthStart = startOfMonth(now);
     const lastMonthStart = subMonths(currentMonthStart, 1);
@@ -21,13 +18,17 @@ export function InsightsPanel() {
     let lastMonthSpend = 0;
     const categorySpend = {};
     const categorySpendLastMonth = {};
+    let totalExpenses = 0;
 
     transactions.forEach(t => {
       if (t.type === 'expense') {
+        totalExpenses += t.amount;
         const txDate = new Date(t.date);
+        
+        categorySpend[t.category] = (categorySpend[t.category] || 0) + t.amount;
+
         if (isAfter(txDate, currentMonthStart)) {
           currentMonthSpend += t.amount;
-          categorySpend[t.category] = (categorySpend[t.category] || 0) + t.amount;
         } else if (isAfter(txDate, lastMonthStart)) {
           lastMonthSpend += t.amount;
           categorySpendLastMonth[t.category] = (categorySpendLastMonth[t.category] || 0) + t.amount;
@@ -35,20 +36,24 @@ export function InsightsPanel() {
       }
     });
 
-    const highestCategory = Object.entries(categorySpend).sort((a,b) => b[1] - a[1])[0];
+    const sortedCategories = Object.entries(categorySpend)
+         .sort((a,b) => b[1] - a[1])
+         .map(([name, amount]) => ({ name, amount }));
+    
+    const highestCategory = sortedCategories[0];
+    const top3 = sortedCategories.slice(0, 3);
     
     const result = [];
     
-    // Custom smart insight message based on user specifications
-    if (highestCategory && categorySpendLastMonth[highestCategory[0]]) {
-       const currentCatSpend = highestCategory[1];
-       const lastCatSpend = categorySpendLastMonth[highestCategory[0]];
+    if (highestCategory && categorySpendLastMonth[highestCategory.name]) {
+       const currentCatSpend = highestCategory.amount;
+       const lastCatSpend = categorySpendLastMonth[highestCategory.name];
        const diffCat = ((currentCatSpend - lastCatSpend) / lastCatSpend) * 100;
        if (diffCat > 0) {
          result.push({
            icon: <AlertCircle className="h-5 w-5 text-orange-500" />,
            title: "Category Alert",
-           desc: `You spent ${diffCat.toFixed(0)}% more on ${highestCategory[0]} this month.`,
+           desc: `You spent ${diffCat.toFixed(0)}% more on ${highestCategory.name} this month.`,
            highlight: true
          });
        }
@@ -58,7 +63,7 @@ export function InsightsPanel() {
       result.push({
         icon: <Lightbulb className="h-5 w-5 text-[var(--color-fin-cyan)]" />,
         title: "Highest Spending",
-        desc: `Most of your budget recently went to ${highestCategory[0]} (${formatCurrency(highestCategory[1])}).`
+        desc: `Most of your budget recently went to ${highestCategory.name} (${formatCurrency(highestCategory.amount)}).`
       });
     }
 
@@ -72,22 +77,24 @@ export function InsightsPanel() {
         });
       } else {
         result.push({
-          icon: <TrendingDown className="h-5 w-5 text-emerald-500 dark:text-emerald-400" />,
+          icon: <TrendingDown className="h-5 w-5 text-[var(--color-fin-emerald)]" />,
           title: "Spending Decrease",
           desc: `Great! Your spending dropped by ${Math.abs(diff).toFixed(1)}% vs last month.`
         });
       }
     }
 
-    return result;
+    return { insights: result, topCategories: { list: top3, total: totalExpenses } };
   }, [transactions, formatCurrency]);
+
+  const COLORS = ['bg-blue-500', 'bg-cyan-500', 'bg-emerald-500'];
 
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>Smart Insights</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4 flex-1">
+      <CardContent className="space-y-4 flex-1 pb-6">
         {insights.length === 0 ? (
           <p className="text-sm text-slate-500">Not enough data for insights.</p>
         ) : (
@@ -109,6 +116,33 @@ export function InsightsPanel() {
               </div>
             </div>
           ))
+        )}
+
+        {topCategories.list && topCategories.list.length > 0 && (
+           <div className="rounded-xl p-5 bg-white border border-slate-100 dark:bg-slate-800/20 dark:border-slate-700/40 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] mt-6">
+             <div className="flex items-center gap-2 mb-5">
+                <Lightbulb className="w-4 h-4 text-amber-500" />
+                <h4 className="text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400 uppercase">Top Expense Burn</h4>
+             </div>
+             <div className="space-y-4">
+               {topCategories.list.map((cat, i) => {
+                 const percentage = ((cat.amount / topCategories.total) * 100).toFixed(0);
+                 return (
+                   <div key={i} className="group">
+                     <div className="flex justify-between text-xs mb-1.5">
+                       <span className="font-medium text-slate-700 dark:text-slate-300">{cat.name}</span>
+                       <span className="font-bold text-slate-900 dark:text-slate-100">
+                          {formatCurrency(cat.amount)} <span className="text-slate-400 font-medium ml-1">({percentage}%)</span>
+                       </span>
+                     </div>
+                     <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden shadow-inner">
+                       <div className={`${COLORS[i % COLORS.length]} h-2.5 rounded-full transition-all duration-1000 ease-out group-hover:opacity-80`} style={{ width: `${percentage}%` }}></div>
+                     </div>
+                   </div>
+                 );
+               })}
+             </div>
+           </div>
         )}
       </CardContent>
     </Card>
