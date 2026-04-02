@@ -43,7 +43,4 @@ A modern and responsive finance dashboard built to visualize and manage financia
 ---
 
 ## How to Run 
-Navigate to the project root where package.json exists. 
-Install dependencies: npm install 
-Start the dev server: npm run dev 
 Open the URL, typically https://dhan-chakra752.vercel.app/
