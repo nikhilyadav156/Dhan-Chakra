@@ -1,23 +1,49 @@
 # Finance Dashboard
 
-A modern, responsive dashboard showcasing fintech data using React, Tailwind CSS, and Recharts.
+A modern and responsive finance dashboard built to visualize and manage financial data in a clean and intuitive way.
 
-## Architecture & Built By
-- **React 18** via Vite
-- **Tailwind CSS** for layout, styling, and dark mode handling through class strategies.
-- **Recharts** for elegant data visualization.
-- **Lucide React** for cohesive iconography.
-- **Context API** handles state (mock transactions, theme, user role).
+---
 
-## Features
-- **Dashboard Overview**: Cash Flow and Expense breakdown charts with summarized KPI cards.
-- **Transaction Manager**: Filter, sort, and search fake ledger data. 
-- **Roles Simulated**: Switch between Viewer (Read-only) and Admin (edit/add functionality).
-- **Dark Mode**: Persisted in local storage, along with transaction state changes.
-- **Real-time Insights**: Identifies anomalies and aggregates data mathematically to provide dynamic notifications on spending trends.
+##  Tech Stack
 
-## How to Run
-1. Navigate to the project root where `package.json` exists.
-2. Install dependencies: `npm install`
-3. Start the dev server: `npm run dev`
-4. Open the locally hosted URL, typically `http://localhost:5173`
+- **React (Vite)** – fast and lightweight frontend setup  
+- **Tailwind CSS** – styling and responsive design  
+- **Recharts** – charts and data visualization  
+- **Lucide Icons** – simple and consistent icons  
+- **Context API** – state management (transactions, theme, role)
+
+---
+
+##  Features
+
+###  Dashboard Overview
+- Summary cards for balance, income, and expenses  
+- Visual charts for:
+  - Cash flow trends  
+  - Expense breakdown  
+
+### Transactions
+- View transaction history with:
+  - Date, amount, category, type  
+- Search, filter, and sort transactions easily  
+
+###  Role-Based UI (Simulated)
+- **Viewer** → can only view data  
+- **Admin** → can add/edit transactions  
+
+###  Dark Mode
+- Toggle between light and dark theme  
+- Preference saved in local storage  
+
+###  Insights
+- Shows useful observations like:
+  - Spending trends  
+  - Category-wise analysis  
+
+---
+
+## How to Run 
+Navigate to the project root where package.json exists. 
+Install dependencies: npm install 
+Start the dev server: npm run dev 
+Open the URL, typically https://dhan-chakra752.vercel.app/
