@@ -14,7 +14,7 @@ export function Sidebar({ className, activeTab, setActiveTab }) {
     <aside className={cn("flex flex-col border-r border-slate-200 bg-white px-4 py-8 dark:border-slate-800/50 dark:bg-[var(--color-fin-card)] transition-all", className)}>
       <div className="flex items-center gap-3 px-2 mb-10">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-fin-primary)] text-white shadow-sm">
-          <Aperture className="h-5 w-5" />
+          <Aperture className="h-5 w-5 animate-[spin_6s_linear_infinite]" />
         </div>
         <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Dhan-Chakra</span>
       </div>

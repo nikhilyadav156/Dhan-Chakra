@@ -51,11 +51,11 @@ export function ExpenseChart() {
       </CardHeader>
       <CardContent className="h-[280px] w-full pt-4">
         <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
+          <PieChart margin={{ bottom: 20 }}>
             <Pie
               data={data}
-              innerRadius={70}
-              outerRadius={105}
+              innerRadius={60}
+              outerRadius={85}
               paddingAngle={3}
               dataKey="value"
               stroke="none"
