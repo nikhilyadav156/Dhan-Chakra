@@ -1,14 +1,24 @@
 @import "tailwindcss";
 
-/* Allow overriding dark mode with class instead of media */
 @variant dark (&:is(.dark *));
+
+@theme {
+  --color-fin-bg: #0F172A;
+  --color-fin-card: #111827;
+  --color-fin-text: #E5E7EB;
+  --color-fin-emerald: #10B981;
+  --color-fin-cyan: #22D3EE;
+  --color-fin-red: #EF4444;
+  --color-fin-muted: #64748B;
+}
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 transition-colors duration-200;
+    @apply bg-slate-50 text-slate-900 transition-colors duration-200 antialiased;
   }
   
   .dark body {
-    @apply bg-slate-950 text-slate-50;
+    background-color: var(--color-fin-bg);
+    color: var(--color-fin-text);
   }
 }

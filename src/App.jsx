@@ -12,21 +12,15 @@ function DashboardLayout() {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
-    <div className="flex h-screen w-full bg-slate-50 dark:bg-[#09090b] font-sans selection:bg-emerald-500/30">
-      {/* Background gradients for aesthetic */}
-      <div className="fixed inset-0 pointer-events-none transition-opacity duration-1000">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/15 blur-[120px] dark:bg-emerald-500/10 animate-pulse duration-[8000ms]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-cyan-500/15 blur-[120px] dark:bg-cyan-500/10 animate-pulse duration-[10000ms]" />
-      </div>
-
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} className="w-64 hidden md:flex relative z-10 hover:shadow-2xl transition-shadow" />
+    <div className="flex h-screen w-full bg-slate-50 dark:bg-[var(--color-fin-bg)] font-sans selection:bg-[var(--color-fin-emerald)]/30">
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} className="w-64 hidden md:flex relative z-10" />
       <div className="flex flex-1 flex-col overflow-hidden relative z-10">
         <Header />
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
           <div className="mx-auto max-w-[1200px] space-y-6">
             
             {activeTab === 'dashboard' && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
+              <div className="animate-in fade-in duration-500 space-y-6">
                 <div className="grid gap-4 md:grid-cols-3">
                   <SummaryCards />
                 </div>
@@ -50,20 +44,20 @@ function DashboardLayout() {
             )}
 
             {activeTab === 'transactions' && (
-              <div className="pb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="pb-8 animate-in fade-in duration-500">
                 <TransactionList />
               </div>
             )}
 
             {activeTab === 'insights' && (
-              <div className="pb-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="pb-8 max-w-2xl mx-auto animate-in fade-in duration-500">
                 <InsightsPanel />
               </div>
             )}
 
             {activeTab === 'settings' && (
-              <div className="flex items-center justify-center h-64 border-2 border-dashed border-emerald-200 dark:border-white/10 rounded-3xl animate-in fade-in duration-500 bg-white/30 dark:bg-white/5 backdrop-blur-md">
-                <p className="text-slate-500 tracking-wider text-sm font-medium">SETTINGS_MODULE_INACTIVE</p>
+              <div className="flex items-center justify-center h-64 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl animate-in fade-in duration-500 dark:bg-[var(--color-fin-card)]">
+                <p className="text-slate-500 tracking-wider text-sm font-medium">Settings coming soon.</p>
               </div>
             )}
             

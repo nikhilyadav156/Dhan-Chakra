@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sun, Moon, UserCircle2, Aperture, Banknote } from 'lucide-react';
+import { Sun, Moon, UserCircle2, Aperture, Banknote, ShieldAlert } from 'lucide-react';
 import { useFinance } from '../../context/FinanceContext';
 import { Button } from '../ui/Button';
 
@@ -7,52 +7,41 @@ export function Header() {
   const { theme, toggleTheme, role, toggleRole, currency, toggleCurrency } = useFinance();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-emerald-100/50 bg-white/40 px-6 backdrop-blur-xl dark:border-white/5 dark:bg-white/5">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md dark:border-slate-800/50 dark:bg-[var(--color-fin-bg)]/80">
       <div className="flex items-center">
-        <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-tr from-emerald-400 to-cyan-500 text-white shadow-sm md:hidden mr-2">
-          <Aperture className="h-3.5 w-3.5 animate-[spin_6s_linear_infinite]" />
+        <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-fin-emerald)] text-white shadow-sm md:hidden mr-3">
+          <Aperture className="h-3.5 w-3.5" />
         </div>
-        <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 md:hidden mr-4">Dhan-Chakra</h2>
-        <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-200 hidden md:block">Good {new Date().getHours() < 12 ? 'Morning' : 'Evening'}, Nikhil!</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 md:hidden mr-4">Dhan-Chakra</h2>
+        <div className="hidden md:flex flex-col">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 leading-tight">Good {new Date().getHours() < 12 ? 'Morning' : 'Evening'}, Nikhil</h2>
+          <p className="text-xs font-medium text-slate-500 dark:text-[var(--color-fin-muted)]">Here is your financial summary</p>
+        </div>
       </div>
-      <div className="flex items-center gap-2 sm:gap-4">
-        {/* Role Switcher Group */}
-        <div className="flex items-center gap-1 bg-slate-100/50 dark:bg-black/20 rounded-full p-1 border border-slate-200/50 dark:border-white/5 hidden sm:flex backdrop-blur-md">
-          <Button 
-            variant={role === 'Viewer' ? 'default' : 'ghost'} 
-            size="sm" 
-            onClick={() => role !== 'Viewer' && toggleRole()} 
-            className="rounded-full h-7 text-xs px-4"
-          >
-            Viewer
-          </Button>
-          <Button 
-            variant={role === 'Admin' ? 'default' : 'ghost'} 
-            size="sm" 
-            onClick={() => role !== 'Admin' && toggleRole()} 
-            className="rounded-full h-7 text-xs px-4"
-          >
-            Admin
-          </Button>
+      <div className="flex items-center gap-3 sm:gap-4">
+        
+        {/* Role Badge Indicator */}
+        <div className="hidden sm:flex items-center justify-center px-2.5 py-1.5 rounded-md text-[11px] font-bold tracking-wide bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" onClick={toggleRole} title="Click to swap role">
+          {role === 'Admin' ? <><ShieldAlert className="w-3.5 h-3.5 mr-1.5 text-emerald-500" /> Admin Access</> : 'Viewer Mode'}
         </div>
         
         {/* Currency Toggle */}
-        <Button variant="ghost" size="sm" onClick={toggleCurrency} className="rounded-full hover:bg-emerald-50 dark:hover:bg-white/10 text-emerald-600 dark:text-emerald-400 font-semibold w-12 hidden sm:flex h-9 shadow-sm shadow-emerald-500/5 border border-transparent hover:border-emerald-100 dark:hover:border-white/10">
+        <Button variant="outline" size="sm" onClick={toggleCurrency} className="h-8 px-3 hidden sm:flex text-xs font-semibold">
           {currency === 'USD' ? 'USD' : 'INR'}
         </Button>
-        <Button variant="ghost" size="icon" onClick={toggleCurrency} className="rounded-full hover:bg-emerald-50 dark:hover:bg-white/10 text-emerald-600 dark:text-emerald-400 sm:hidden">
+        <Button variant="ghost" size="icon" onClick={toggleCurrency} className="sm:hidden text-slate-500 dark:text-[var(--color-fin-muted)]">
           <Banknote className="h-5 w-5" />
         </Button>
 
         {/* Theme Toggle */}
-        <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full hover:bg-emerald-50 dark:hover:bg-white/10 text-emerald-600 dark:text-emerald-400">
+        <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-slate-500 dark:text-[var(--color-fin-muted)] hover:text-slate-900 dark:hover:text-slate-100">
           {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button>
         
         {/* User Avatar */}
-        <Button variant="ghost" size="icon" className="rounded-full bg-gradient-to-tr from-emerald-400 to-cyan-500 text-white hover:opacity-90 shadow-md shadow-emerald-500/20">
-          <UserCircle2 className="h-6 w-6" />
-        </Button>
+        <button className="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-[var(--color-fin-muted)] hover:ring-2 ring-[var(--color-fin-emerald)] ring-offset-2 dark:ring-offset-[var(--color-fin-bg)] transition-all">
+          <UserCircle2 className="h-5 w-5" />
+        </button>
       </div>
     </header>
   );
