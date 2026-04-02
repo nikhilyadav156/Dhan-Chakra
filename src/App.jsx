@@ -18,7 +18,7 @@ function DashboardLayout() {
     <div className="flex h-screen w-full bg-slate-50 dark:bg-[#0F172A] font-sans selection:bg-blue-500/30 relative">
       
       {/* Premium Light Theme Glass Background Overlay */}
-      <div className={`absolute inset-0 z-0 pointer-events-none transition-colors duration-700 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] ${role === 'Admin' ? 'from-indigo-50/70 via-slate-50' : 'from-slate-200/80 via-slate-100'} to-slate-100/90 dark:hidden`} />
+      <div className={`absolute inset-0 z-0 pointer-events-none transition-colors duration-700 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] ${role === 'Admin' ? 'from-indigo-50/70 via-slate-50' : 'from-emerald-50/80 via-emerald-50/30'} to-slate-100/90 dark:hidden`} />
       
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} className="w-64 hidden md:flex relative z-10" />
       <div className="flex flex-1 flex-col overflow-hidden relative z-10">
