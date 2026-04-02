@@ -68,8 +68,10 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const formatCurrency = useCallback((amount) => {
+    // 1 USD = 93 INR exchange rate assumption
     if (currency === 'INR') {
-      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+      const converted = amount * 93;
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(converted);
     }
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(amount);
   }, [currency]);
